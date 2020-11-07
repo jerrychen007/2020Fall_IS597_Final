@@ -1,1 +1,5 @@
-# 2020Fall_projects
+# A Monte Carlo simulation to predict how strong Franks’ Paladin is against other units in Age of Empires II  </br>
+### Scenario:</br>
+Age of Empires II (AoE II) is a real-time strategic game developed and published by Microsoft in 1999, and two remastered editions were released in 2013 (HD version) and 2019 (Definitive Edition). The game is still one of my favorite games after 21 years have passed and the 2-D art design is still amazing in modern days. Age of Empires II is still the most popular RTS game on PC in 2020.</br>
+Franks was famous for cavalry combat in history. In this game, Paladins (heavy calvary) from Franks have 20% percent more health than other civilizations. However, the lack of Bloodlines technology makes them have the maximum of 192 health. Some civilizations like Spanish have 180 health for their Paladins and some only have 160 health.</br>
+I’m trying to use Monte Carlo simulation to predict the win rate of a certain number of Paladins against other units in this game. For example, how many normal Paladins can 40 Franks Paladins counter and win the fight? What about Champion, Halberdier, Teutonic Knight?</br>

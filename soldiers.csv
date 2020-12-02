@@ -1,0 +1,9 @@
+enemy_type,attack_type,health,attack,normal_armor,pierce_armor
+Champion,normal,70,17,4,5
+Halberdier,normal,60,42,3,4
+Paladin,normal,180,18,5,7
+Elite_War_Elephant,normal,620,24,4,7
+Hussar,normal,95,11,3,6
+Arbalester,pierce,40,10,3,4
+Hand_Cannoneer,pierce,35,17,4,4
+Heavy_Cavalry_Archer,pierce,80,11,5,6

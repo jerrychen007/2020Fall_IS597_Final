@@ -1,45 +1,73 @@
-import soldiers
+from soldiers import Champion, Halberdier, Paladin, Elite_War_Elephant, Hussar, Arbalester, Hand_Cannoneer, Heavy_Cavalry_Archer
 import matplotlib.pyplot as plt
+import pandas as pd
+import math
 
-DEFAULT_FRANKS_PALADIN_HEALTH = 192  # as per game start
-DEFAULT_PALADIN_HEALTH = 180
-DEFAULT_PALADIN_NUMBER = 40
+DEFAULT_FRANKS_PALADIN_HEALTH = 192
+DEFAULT_PALADIN_HEALTH = 160
+INITIAL_PALADIN_NUMBER = 40
+INITIAL_ENEMY_NUMBER = 40
 DEFAULT_PALADIN_ATTACK = 18
 DEFAULT_PALADIN_NORMAL_ARMOR = 5
 DEFAULT_PALADIN_PIERCE_ARMOR = 7
-DEFAULT_ENEMY_ATTACK = 10
-UPGRADE_COSTS_GOLD = 1050
 Number_of_simulations = 100
 
-class AoeIISimulator:
-    def __init__(self, Paladins = DEFAULT_PALADIN_NUMBER):
-        self.Paladins = Paladins
-        self.enemy_attack = DEFAULT_ENEMY_ATTACK
+soldiers_info = pd.read_csv('soldiers.csv')
+col_to_list = soldiers_info['enemy_type'].tolist()
+str = ', '.join(col_to_list)
+print("We have these enemy types to select: "+ str)
 
-    def hits_can_take(self, attack_type):
-        if attack_type == 'normal':
-            hits_can_take = health/(enemy_attack - normal_armor)
-        elif attack_type == 'pierce':
-            hits_can_take = enemy_attack - normal_armor
+enemy_type = input("Enter the enemy type: ")
+
+def main():
 
 
+def hits_can_take(enemy_type):
+    attack_type = soldiers_info.loc[soldiers_info['enemy_type'] == enemy_type, "attack_type"].item()
+    attack = soldiers_info.loc[soldiers_info['enemy_type'] == enemy_type, 'attack'].item()
+    health = soldiers_info.loc[soldiers_info['enemy_type'] == enemy_type, 'health'].item()
+    normal_armor = soldiers_info.loc[soldiers_info['enemy_type'] == enemy_type, 'normal_armor'].item()
+    pierce_armor = soldiers_info.loc[soldiers_info['enemy_type'] == enemy_type, 'pierce_armor'].item()
+    if attack_type == 'normal':
+        hits_can_take = DEFAULT_FRANKS_PALADIN_HEALTH/(attack - DEFAULT_PALADIN_NORMAL_ARMOR)
+        hits_to_kill_enemy = health/(DEFAULT_PALADIN_ATTACK - normal_armor)
+    elif enemy_type.attack_type == 'pierce':
+        hits_can_take = DEFAULT_FRANKS_PALADIN_HEALTH/(attack - DEFAULT_PALADIN_PIERCE_ARMOR)
+        hits_to_kill_enemy = health/(DEFAULT_PALADIN_ATTACK - normal_armor)
+    hits_can_take = math.ceil(hits_can_take)
+    hits_to_kill_enemy = math.ceil(hits_to_kill_enemy)
+    return hits_can_take, hits_to_kill_enemy
 
-    def battle_end(self):
-        for key in self.armies.keys():
-            if self.armies[key] != 0:
-                return False
-        return True
+def battle_end(self):
+    for key in self.battlefield.keys():
+        if self.battlefield[key] != 0:
+            return False
+    return True
 
-    def draw_graph(self):
+def draw_graph(self, resource_goal, num_villager_range: tuple = (5,30)):
+        # generate statistical graph for completion time versus the number of villagers
 
+    def generate_graph_title(): # generate title for the graph
+        begin = 'The time of generating '
+        temp_list = []
+        for key in resource_goal:
+            if resource_goal[key] != 0:
+                temp_list.append( str(resource_goal[key]) + ' ' + key)
+        return begin + ','.join(temp_list)
 
+    low, high = num_villager_range
+    time_list = []
+    for n_villager in range(low, high + 1):
+        sim = AoeIISimulator()
+        sim.set_resource_goal(resource_goal)
+        time_took = sim.complex_sim(n_villager, return_value=True)
+        time_list.append(time_took)
 
-if __name__ == '__main__':
+    plt.title(generate_graph_title())
+    plt.xlabel('Number of enemies')
+    plt.ylabel('time_spent')
+    plt.plot(range(low, high + 1), time_list)
+    plt.show()
 
-    min_enemy_soldiers = 10
-    max_enemy_soldiers = 100
-    goal = {'Paladins': 0} or {'Enemy_soldiers': 0}
-
-    sim = AoeIISimulator()
-    sim.draw_graph(goal, (min_enemy_soldiers, max_enemy_soldiers))
+main()
 

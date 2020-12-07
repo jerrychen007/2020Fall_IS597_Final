@@ -1,4 +1,3 @@
-from soldiers import Champion, Halberdier, Paladin, Elite_War_Elephant, Hussar, Arbalester, Hand_Cannoneer, Heavy_Cavalry_Archer
 import matplotlib.pyplot as plt
 import pandas as pd
 import math
@@ -38,16 +37,14 @@ def hits_can_take(enemy_type):
     hits_to_kill_enemy = math.ceil(hits_to_kill_enemy)
     return hits_can_take, hits_to_kill_enemy
 
-def battle_end(self):
-    for key in self.battlefield.keys():
-        if self.battlefield[key] != 0:
+def battle_end(battlefield):
+    for key in battlefield.keys():
+        if battlefield[key] != 0:
             return False
     return True
 
-def draw_graph(self, resource_goal, num_villager_range: tuple = (5,30)):
-        # generate statistical graph for completion time versus the number of villagers
-
-    def generate_graph_title(): # generate title for the graph
+def draw_graph(resource_goal, num_villager_range: tuple = (5,30)):
+    def generate_graph_title():
         begin = 'The time of generating '
         temp_list = []
         for key in resource_goal:
@@ -56,18 +53,19 @@ def draw_graph(self, resource_goal, num_villager_range: tuple = (5,30)):
         return begin + ','.join(temp_list)
 
     low, high = num_villager_range
-    time_list = []
+    success_rates = []
     for n_villager in range(low, high + 1):
-        sim = AoeIISimulator()
-        sim.set_resource_goal(resource_goal)
-        time_took = sim.complex_sim(n_villager, return_value=True)
+        sim1 = AoeSimulator()
+        sim1.set_resource_goal(resource_goal)
+        time_took = sim1.complex_sim(n_villager, return_value=True)
         time_list.append(time_took)
 
     plt.title(generate_graph_title())
-    plt.xlabel('Number of enemies')
-    plt.ylabel('time_spent')
-    plt.plot(range(low, high + 1), time_list)
+    plt.xlabel('Number of Enemies')
+    plt.ylabel('Success rate')
+    plt.plot(range(low, high + 1), success_rates)
     plt.show()
 
-main()
-
+if __name__ == '__main__':
+    min_enemy = 10
+    max_enemy = 100

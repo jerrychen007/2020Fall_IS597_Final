@@ -12,9 +12,8 @@ The 20% additional health will give Franks a moderate advantage in fights.
 ### Fixed rules:
 1. All units are upgraded to their full potential. 
 2. For simplicity, we assume all units are stuffed into a small arena and it takes no time to move and attack next target.
-3. A max of 6 soldiers can attack the same target due to the limited space around a unit in actual game.
-4. All units have the same attack rate.
-5. All data are based on the Definitive Edition.
+3. All units have the same attack rate.
+4. All data are based on the Definitive Edition.
 ### Expected Results:
 I will plot the simulated results of win rates so the user can view at which point Franks starts losing. I am considering adding the number of units lost and total health remain as part of results.
 

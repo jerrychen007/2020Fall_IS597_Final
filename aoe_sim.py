@@ -11,7 +11,7 @@ MAXIMUM_ENEMY_NUMBER = 100
 DEFAULT_PALADIN_ATTACK = 18
 DEFAULT_PALADIN_NORMAL_ARMOR = 5
 DEFAULT_PALADIN_PIERCE_ARMOR = 7
-Number_of_simulations = 500
+number_of_simulations = 500
 
 soldiers_info = pd.read_csv('soldiers.csv')
 col_to_list = soldiers_info['enemy_type'].tolist()
@@ -19,7 +19,7 @@ str = ', '.join(col_to_list)
 print("We have these enemy types to select: "+ str)
 
 # enemy_type = input("Enter the enemy type: ")
-enemy_type = 'Hussar'
+enemy_type = 'Heavy_Cavalry_Archer'
 
 # def main():
 #     simOneGame
@@ -33,22 +33,22 @@ def hits_to_kill(enemy_type, PALADIN_HEALTH):
     if attack_type == 'normal':
         hits_can_take = PALADIN_HEALTH/(attack - DEFAULT_PALADIN_NORMAL_ARMOR)
         hits_to_kill_enemy = health/(DEFAULT_PALADIN_ATTACK - normal_armor)
-    elif enemy_type.attack_type == 'pierce':
+    elif attack_type == 'pierce':
         hits_can_take = PALADIN_HEALTH/(attack - DEFAULT_PALADIN_PIERCE_ARMOR)
         hits_to_kill_enemy = health/(DEFAULT_PALADIN_ATTACK - normal_armor)
     hits_can_take = math.ceil(hits_can_take)
     hits_to_kill_enemy = math.ceil(hits_to_kill_enemy)
     return hits_can_take, hits_to_kill_enemy
 
-def simNGames(Number_of_simulations, PALADIN_NUMBER, ENEMY_NUMBER, enemy_type, PALADIN_HEALTH):
+def simNGames(number_of_simulations, PALADIN_NUMBER, ENEMY_NUMBER, enemy_type, PALADIN_HEALTH):
     winsP = winsE = 0
-    for i in range(Number_of_simulations):
+    for i in range(number_of_simulations):
         win = simOneGame(PALADIN_NUMBER, ENEMY_NUMBER, enemy_type, PALADIN_HEALTH)
         if win == 1:
             winsP = winsP + 1
         else:
             winsE = winsE + 1
-    win_rate = winsP/Number_of_simulations
+    win_rate = winsP/number_of_simulations
     return win_rate
 
 def simOneGame(PALADIN_NUMBER, ENEMY_NUMBER, enemy_type, PALADIN_HEALTH):
@@ -98,6 +98,10 @@ def checkwin(p, e):
 
 # def draw_graph(resource_goal, num_villager_range: tuple = (5,30)):
 
+dictionary = {}
+for enemy_number in range(1, 100, 1):
+    win_rate = simNGames(number_of_simulations, 40, enemy_number, enemy_type, 192)
+    dictionary[enemy_number] = win_rate
 
-win_rate = simNGames(Number_of_simulations, 40, 90, enemy_type, 192)
-print(win_rate)
+
+

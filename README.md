@@ -17,6 +17,9 @@ The 20% additional health will give Franks a moderate advantage in fights.
 ### Expected Results:
 I will plot the simulated results of win rates so the user can view at which point Franks starts losing. I am considering adding the number of units lost and total health remain as part of results.
 
+### Simulation Results
+![Alt text](Images/Pic1.png?raw=true "Real Game Test")
+
 ### Data sources:
 https://en.wikipedia.org/wiki/Age_of_Empires_II </br>
 https://ageofempires.fandom.com/wiki/Age_of_Empires_II:_Definitive_Edition

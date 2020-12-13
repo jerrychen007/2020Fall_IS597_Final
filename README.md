@@ -18,7 +18,11 @@ The 20% additional health will give Franks a moderate advantage in fights.
 I will plot the simulated results of win rates so the user can view at which point Franks starts losing. I am considering adding the number of units lost and total health remain as part of results.
 
 ### Simulation Results
+![alt text](https://github.com/jerrychen007/2020Fall_IS597_Final/blob/main/Images/Pic2.png?raw=true)
+The outputs after running the simulation 10 times and 500 times.
+
 ![alt text](https://github.com/jerrychen007/2020Fall_IS597_Final/blob/main/Images/pic1.png?raw=true)
+I actually tested this in the real game. It seems 40 paladins with 192 health can actually defeat about 180 Arbalesters.
 
 ### Data sources:
 https://en.wikipedia.org/wiki/Age_of_Empires_II </br>
